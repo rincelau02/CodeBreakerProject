@@ -8,7 +8,7 @@ function guess() {
     	setHiddenFields();
 	}
 
-	if(!validateInput(input.validateInput)){
+	if(!validateInput(input.value)){
 		return;
 	}
 	attempt.value++;
@@ -31,7 +31,7 @@ function getResults(input){
 	for (i = 0; i < input.length; i++){
 		if(input.charAt(i) == answer.value.charAt(i)){
 			html += '<span class="glyphicon glyphicon-ok"></span>';
-		} else if (answer.value.indexOf(input.chartAt(i)) > -1){
+		} else if (answer.value.indexOf(input.charAt(i)) > -1){
 			html +='<span class="glyphicon glyphicon-transfer"></span>';
 		} else {
 			html += '<span class="glyphicon glyphicon-remove"></span>';
@@ -51,7 +51,7 @@ function getResults(input){
 function setHiddenFields(){
 
     answer.value = Math.floor(Math.random() * 10000).toString();
-    while(answer.length < 4) {
+    while(answer.value.length < 4) {
         answer.value = "0" + answer.value;
     }
     attempt.value = "0";
@@ -77,9 +77,9 @@ function showReplay(){
 	document.getElementById('replay-div').style.display = "block";	
 }
 
-function validateInput(){
+function validateInput(input){
 	if(input.length != 4) {
-        message('Guesses must be exactly 4 characters long.');
+        setMessage('Guesses must be exactly 4 characters long.');
         return true;
     } 
     return false;
